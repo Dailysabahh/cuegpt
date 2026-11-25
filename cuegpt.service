@@ -1,0 +1,16 @@
+[Unit]
+Description=CueGPT Flask Application
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/human_chatbot
+Environment="OPENAI_API_KEY=PASTE_YOUR_KEY_HERE"
+ExecStart=/home/ubuntu/human_chatbot/venv/bin/gunicorn -c gunicorn.conf.py App:app
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
